@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -27,5 +28,10 @@ class MessageController(private val service: MessageService) {
     fun post(@RequestBody message: Message): ResponseEntity<Message> {
         val savedMessage = service.save(message)
         return ResponseEntity.created(URI("/${savedMessage.id}")).body(savedMessage)
+    }
+
+    @DeleteMapping("/{id}")
+    fun delete(@PathVariable id: String): ResponseEntity<Boolean> {
+        return ResponseEntity.ok(service.delete(id))
     }
 }

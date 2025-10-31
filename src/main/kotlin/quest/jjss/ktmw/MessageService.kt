@@ -10,4 +10,10 @@ class MessageService(private val db: MessageRepository) {
     fun findMessageById(id: String): Message? = db.findByIdOrNull(id)
 
     fun save(message: Message): Message = db.save(message)
+
+    fun delete(id: String): Boolean {
+        // @todo Handle this exception
+        db.deleteById(id)
+        return true
+    }
 }
