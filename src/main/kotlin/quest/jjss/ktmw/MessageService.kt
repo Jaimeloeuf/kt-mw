@@ -9,7 +9,20 @@ class MessageService(private val db: MessageRepository) {
 
     fun findMessageById(id: String): Message? = db.findByIdOrNull(id)
 
-    fun save(message: Message): Message = db.save(message)
+    fun save(message: Message): Message {
+        val savedMessage = db.save(message)
+
+        if (savedMessage.text.startsWith('/')) {
+            this.processCommandMessage(savedMessage)
+        }
+
+        return savedMessage
+    }
+
+    fun processCommandMessage(message: Message) {
+        val command = message.text.split(' ').first().substring(1)
+        println("Received command: $command")
+    }
 
     fun delete(id: String): Boolean {
         // @todo Handle this exception
