@@ -34,10 +34,14 @@ out/
 /.nb-gradle/
 
 ### VS Code ###
-.vscode/
+# .vscode/
+*.code-workspace
 
 ### Kotlin ###
 .kotlin
 
 ### DB ###
 /data/**.db
+
+### MAC ###
+/**/.DS_Store
