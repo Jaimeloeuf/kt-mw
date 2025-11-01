@@ -6,6 +6,9 @@ import org.springframework.stereotype.Service
 class CommandService(private val db: CommandRepository) {
     fun findCommands(): List<Command> = db.findAll().toList()
 
+    fun doesCommandExist(command: String): Boolean =
+        db.findByCommandLike(command).isNotEmpty()
+
     fun delete(id: String): Boolean {
         // @todo Handle this exception
         db.deleteById(id)
