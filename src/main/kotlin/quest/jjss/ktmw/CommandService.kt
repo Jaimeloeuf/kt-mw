@@ -1,10 +1,13 @@
 package quest.jjss.ktmw
 
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 
 @Service
 class CommandService(private val db: CommandRepository) {
     fun findCommands(): List<Command> = db.findAll().toList()
+
+    fun findCommandById(id: String): Command? = db.findByIdOrNull(id)
 
     fun save(command: Command): Command = db.save(command)
 
