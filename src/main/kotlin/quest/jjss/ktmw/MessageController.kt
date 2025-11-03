@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController
 import java.net.URI
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/message")
 class MessageController(private val service: MessageService) {
     @GetMapping
     fun listMessages() = service.findMessages()
