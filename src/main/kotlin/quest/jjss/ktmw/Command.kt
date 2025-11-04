@@ -6,9 +6,7 @@ import java.util.UUID
 
 @Table("COMMANDS")
 data class Command(
-    @Id val id: String,
+    @Id val id: String = UUID.randomUUID().toString(),
     val command: String,
     val description: String
-) {
-    constructor(command: String, description: String) : this(UUID.randomUUID().toString(), command, description)
-}
+)
